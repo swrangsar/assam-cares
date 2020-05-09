@@ -1,13 +1,12 @@
-// var mongoose = require("mongoose");
 var express = require("express");
-
 var path = require("path");
 var expressHandlebars = require("express-handlebars");
 var bodyparser = require("body-parser");
 
-var app = express();
 var connection = require("./model");
 var MigrantController = require("./controllers/migrants")
+
+var app = express();
 
 app.use(bodyparser.urlencoded({
     extended : true
