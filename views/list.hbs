@@ -1,0 +1,22 @@
+<h1>Migrant Details</h1>
+
+<div>
+Number of migrants: {{data.length}}
+</div>
+
+<table>
+    <tr>
+        <th>Ref. No.</th>
+	<th>Name</th>
+	<th>Present State</th>
+	<th>Circle</th>
+    </tr>
+    {{#each data}}
+    <tr>
+        <td>{{this.refNum}}</td>
+	<td>{{this.name}}</td>
+	<td>{{this.state}}</td>
+	<td>{{this.circle}}</td>
+    </tr>
+    {{/each}}
+</table>

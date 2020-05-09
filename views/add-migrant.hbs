@@ -1,0 +1,27 @@
+<form action="/migrant/add" method="post">
+    <p>
+        <label>Reference No.</label><input value="" name="refNum"/>
+    </p>
+    <p>
+        <label>Name</label><input value="" name="name"/>
+    </p>
+
+    <label>Present State:</label>
+    <select id="state" name="state">
+        {{#each states}}
+        <option value="{{this}}">{{this}}</option>
+	{{/each}}
+    </select>
+
+    </br>
+
+    <label>Revenue Circle:</label>
+    <select id="circle" name="circle">
+        {{#each circles}}
+        <option value="{{this}}">{{this}}</option>
+	{{/each}}
+    </select>
+    <p>
+        <button type="submit">Add Migrant</button>
+    </p>
+</form>
