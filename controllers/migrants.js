@@ -31,6 +31,28 @@ router.get("/list", function(req, res) {
     });
 });
 
+router.get("/list/:circle", function(req, res) {
+    var circle = req.params.circle;
+
+    MigrantModel.find({"circle" : circle}).lean().exec(function(err, docs) {
+        if (!err) {
+	    res.render("circle-list", {
+	        circle : circle,
+		data : docs
+	    })
+	} else {
+	    res.send("Error")
+	}
+    });
+});
+
+
+router.get("/", function(req, res) {
+	res.render("migrant", {
+	    circles : constants.CIRCLES 
+	});
+});
+
 router.get("/add", function(req, res) {
     res.render("add-migrant", {
         circles : constants.CIRCLES,
