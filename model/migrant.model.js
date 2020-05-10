@@ -19,6 +19,22 @@ var MigrantSchema = new mongoose.Schema({
         type: String,
 	required: true,
 	trim: true
+    },
+    phoneNum : {
+        type: Number,
+	required: true
+    },
+    district : {
+        type: String,
+        required: true
+    },
+    address : {
+        type: String,
+        required: true
+    },
+    verification : {
+        type: String,
+        required: true
     }
 });
 

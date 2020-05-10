@@ -8,14 +8,22 @@ Number of migrants: {{data.length}}
     <tr>
         <th>Ref. No.</th>
 	<th>Name</th>
-	<th>Present State</th>
+	<th>Address</th>
+	<th>District</th>
+	<th>State</th>
+	<th>Phone</th>
+	<th>Verification</th>
 	<th>Circle</th>
     </tr>
     {{#each data}}
     <tr>
         <td>{{this.refNum}}</td>
 	<td>{{this.name}}</td>
+	<td>{{this.address}}</td>
+	<td>{{this.district}}</td>
 	<td>{{this.state}}</td>
+	<td>{{this.phoneNum}}</td>
+	<td>{{this.verification}}</td>
 	<td>{{this.circle}}</td>
     </tr>
     {{/each}}
