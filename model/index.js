@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
+require('dotenv').config();
 
-mongoose.connect("mongodb://localhost:27017/assam-cares", { useNewUrlParser: true, useUnifiedTopology : true }, function(err) {
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology : true }, function(err) {
     if (!err) {
         console.log("Success Connected");
     } else {
