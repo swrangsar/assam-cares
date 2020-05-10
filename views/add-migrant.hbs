@@ -63,14 +63,14 @@
       var state = $dropdown.val();
 
       if (state) {
-        console.log("selected state: " + state);
+//        console.log("selected state: " + state);
         $.getJSON("/migrant/get-districts/"+state, function(data) {
 	  $district.empty();
 	  if (data) {
 	    $.each(data.districts, function(index, value) {
 	      $district.append('<option value="' + value + '">' + value + '</option>');
 	    });
-	    console.log("got json data:" + JSON.stringify(data));
+//	    console.log("got json data:" + JSON.stringify(data));
 	  } else {
 	    console.log("got empty json data for state " + state);
 	  }

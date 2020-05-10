@@ -81,7 +81,7 @@ router.post("/add", function(req, res) {
 
 router.get("/get-districts/:state", function(req, res) {
     var state = req.params.state;
-    fs.readFile(path.join(__dirname, '../public/data/states.json'),
+    fs.readFile(path.join(__dirname, '../public/data/states-and-districts.json'),
         'utf-8', (err, data) => {
         if (err) throw err;
 
@@ -89,10 +89,10 @@ router.get("/get-districts/:state", function(req, res) {
 	
 	if (state in jsonData) {
 	    var districtData = jsonData[state];
-	    console.log(JSON.stringify(districtData));
+//	    console.log(JSON.stringify(districtData));
 	    res.json(districtData);
 	} else {
-	    console.log("state " + state + "not in json data");
+	    console.log("state " + state + " not in json data");
 	}
     });
 });
