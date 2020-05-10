@@ -15,8 +15,16 @@
   </div>
 
   <div class="form-group">
+    <label for="district">Present district:</label>
+    <select id="district" name="district" class="form-control">
+      <option value="">Select district</option>
+    </select>
+  </div>
+
+  <div class="form-group">
     <label for="state">Present State:</label>
     <select id="state" name="state" class="form-control">
+      <option value="">Select state</option>
       {{#each states}}
       <option value="{{this}}">{{this}}</option>
       {{/each}}
@@ -44,3 +52,16 @@
 
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
+
+<script>
+  $(document).ready(function() {
+    $('#state').change(function() {
+      var state = $(this).val();
+      if (state != '') {
+        $('#district').html('<option value="">district changed</option>');
+      } else {
+        $('#district').html('<option value="">Select district</option>');
+      }
+    });
+  });
+</script>
