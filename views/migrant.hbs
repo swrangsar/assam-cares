@@ -1,19 +1,10 @@
 <h1>Migrant Details</h1>
 
-<table>
-    <tr>
-	<th>Circle</th>
-    </tr>
-    <tr>
-        <td>
-	    <a href="/migrant/list">All circles</a>
-	</td>
-    </tr>
-    {{#each circles}}
-    <tr>
-        <td>
-	    <a href="/migrant/list/{{this}}">{{this}}</a>
-	</td>
-    </tr>
-    {{/each}}
-</table>
+
+<h3>Circles</h3>
+<div class="list-group">
+  <a href="/migrant/list" class="list-group-item">All circles</a>
+  {{#each circles}}
+    <a href="/migrant/list/{{this}}" class="list-group-item">{{this}}</a>
+  {{/each}}
+</div>

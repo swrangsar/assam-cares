@@ -8,7 +8,9 @@ var MigrantSchema = new mongoose.Schema({
     },
     refNum : {
         type: Number,
-	required: true
+	required: true,
+	unique: true,
+	dropDups: true
     },
     state : {
         type: String,
@@ -26,15 +28,18 @@ var MigrantSchema = new mongoose.Schema({
     },
     district : {
         type: String,
-        required: true
+        required: true,
+	trim: true
     },
     address : {
         type: String,
+	trim: true,
         required: true
     },
     verification : {
         type: String,
-        required: true
+        required: true,
+	trim: true
     }
 });
 
