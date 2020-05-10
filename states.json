@@ -1,0 +1,19 @@
+{
+  "Karnataka" : [
+    "Bengaluru Rural",
+    "Bengaluru Urban",
+    "Mysuru"
+  ],
+
+  "Tamil Nadu": [
+    "Chennai",
+    "Dindugul",
+    "Vellore"
+  ],
+  
+  "Kerala": [
+    "Alappuzha",
+    "Ernakulam",
+    "Kollam"
+  ]
+}
