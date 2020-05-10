@@ -3,19 +3,22 @@ var mongoose = require("mongoose");
 var MigrantSchema = new mongoose.Schema({
     name : {
         type: String,
-	required: "Required"
+	required: true,
+	trim: true
     },
     refNum : {
         type: Number,
-	required: "Required"
+	required: true
     },
     state : {
         type: String,
-	required: "Required"
+	required: true,
+	trim: true
     },
     circle : {
         type: String,
-	required: "Required"
+	required: true,
+	trim: true
     }
 });
 
