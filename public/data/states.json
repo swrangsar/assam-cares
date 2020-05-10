@@ -1,0 +1,32 @@
+{
+  "Karnataka" : {
+    "districts": [
+      "Bengaluru Rural",
+      "Bengaluru Urban",
+      "Mysuru"
+    ]
+  },
+
+  "Tamil Nadu": {
+    "districts": [
+      "Chennai",
+      "Dindugul",
+      "Vellore"
+    ]
+  },
+  
+  "Kerala": {
+    "districts": [
+      "Alappuzha",
+      "Ernakulam",
+      "Kollam"
+    ]
+  },
+
+  "Maharashtra": {
+    "districts": [
+      "Mumbai",
+      "Nagpur"
+    ]
+  }
+}

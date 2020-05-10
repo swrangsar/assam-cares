@@ -1,10 +1,13 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var constants = require("../constant");
+var path = require("path");
 
 var router = express.Router();
 var MigrantModel = mongoose.model("Migrant");
+const fs = require('fs');
 
+// let districtData = require("../public/data/states.json");
 
 router.get("/list", function(req, res) {
 //    var migrant = new MigrantModel();
@@ -72,6 +75,24 @@ router.post("/add", function(req, res) {
 	    res.redirect("/migrant/list")
 	} else {
 	    res.send("Error Occured");
+	}
+    });
+});
+
+router.get("/get-districts/:state", function(req, res) {
+    var state = req.params.state;
+    fs.readFile(path.join(__dirname, '../public/data/states.json'),
+        'utf-8', (err, data) => {
+        if (err) throw err;
+
+	var jsonData = JSON.parse(data);
+	
+	if (state in jsonData) {
+	    var districtData = jsonData[state];
+	    console.log(JSON.stringify(districtData));
+	    res.json(districtData);
+	} else {
+	    console.log("state " + state + "not in json data");
 	}
     });
 });

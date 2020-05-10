@@ -17,14 +17,14 @@
   <div class="form-group">
     <label for="district">Present district:</label>
     <select id="district" name="district" class="form-control">
-      <option value="">Select district</option>
+      <option selected="true" value="" disabled>Select district</option>
     </select>
   </div>
 
   <div class="form-group">
     <label for="state">Present State:</label>
     <select id="state" name="state" class="form-control">
-      <option value="">Select state</option>
+      <option selected="true" disabled>Choose state/union territory</option>
       {{#each states}}
       <option value="{{this}}">{{this}}</option>
       {{/each}}
@@ -44,6 +44,7 @@
   <div class="form-group">
     <label for="circle">Revenue Circle:</label>
     <select id="circle" name="circle" class="form-control">
+      <option selected="true" disabled>Choose revenue circle</option>
       {{#each circles}}
       <option value="{{this}}">{{this}}</option>
       {{/each}}
@@ -56,11 +57,26 @@
 <script>
   $(document).ready(function() {
     $('#state').change(function() {
-      var state = $(this).val();
-      if (state != '') {
-        $('#district').html('<option value="">district changed</option>');
+      var $dropdown = $(this);
+      var $district = $("#district");
+
+      var state = $dropdown.val();
+
+      if (state) {
+        console.log("selected state: " + state);
+        $.getJSON("/migrant/get-districts/"+state, function(data) {
+	  $district.empty();
+	  if (data) {
+	    $.each(data.districts, function(index, value) {
+	      $district.append('<option value="' + value + '">' + value + '</option>');
+	    });
+	    console.log("got json data:" + JSON.stringify(data));
+	  } else {
+	    console.log("got empty json data for state " + state);
+	  }
+	});
       } else {
-        $('#district').html('<option value="">Select district</option>');
+        $('#district').html('<option selected="true" disabled>Choose district</option>');
       }
     });
   });

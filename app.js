@@ -14,6 +14,8 @@ app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); /
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist')); // redirect JS jQuery
 
+app.use('/data', express.static(__dirname + '/public/data')); // data folder
+
 app.use(bodyparser.urlencoded({
     extended : true
 }));
