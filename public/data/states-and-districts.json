@@ -1,4 +1,11 @@
 {  
+  "Andaman and Nicobar Islands" : {
+    "districts" : [
+      "Nicobar",
+      "North and Middle Andaman",
+      "South Andaman"
+    ]
+  },
     "Andhra Pradesh" : {
          "districts":[  
             "Anantapur",
@@ -284,12 +291,10 @@
             "Doda",
             "Ganderbal",
             "Jammu",
-            "Kargil",
             "Kathua",
             "Kishtwar",
             "Kulgam",
             "Kupwara",
-            "Leh",
             "Poonch",
             "Pulwama",
             "Rajouri",
@@ -301,34 +306,35 @@
             "Udhampur"
          ]
       },
-    "Jharkhand" : {
-         "districts":[  
-            "Bokaro",
-            "Chatra",
-            "Deoghar",
-            "Dhanbad",
-            "Dumka",
-            "East Singhbhum",
-            "Garhwa",
-            "Giridih",
-            "Godda",
-            "Gumla",
-            "Hazaribag",
-            "Jamtara",
-            "Khunti",
-            "Koderma",
-            "Latehar",
-            "Lohardaga",
-            "Pakur",
-            "Palamu",
-            "Ramgarh",
-            "Ranchi",
-            "Sahibganj",
-            "Seraikela-Kharsawan",
-            "Simdega",
-            "West Singhbhum"
-         ]
-      },
+
+  "Jharkhand" : {
+     "districts":[  
+        "Bokaro",
+        "Chatra",
+        "Deoghar",
+        "Dhanbad",
+        "Dumka",
+        "East Singhbhum",
+        "Garhwa",
+        "Giridih",
+        "Godda",
+        "Gumla",
+        "Hazaribag",
+        "Jamtara",
+        "Khunti",
+        "Koderma",
+        "Latehar",
+        "Lohardaga",
+        "Pakur",
+        "Palamu",
+        "Ramgarh",
+        "Ranchi",
+        "Sahibganj",
+        "Seraikela-Kharsawan",
+        "Simdega",
+        "West Singhbhum"
+     ]
+  },
 
     "Karnataka" : {
          "districts":[  
@@ -383,6 +389,13 @@
             "Wayanad"
          ]
       },
+
+  "Ladakh" : {
+    "districts" : [
+      "Kargil",
+      "Leh"
+    ]
+  },
 
     "Lakshadweep" : {
          "districts":[  

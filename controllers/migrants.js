@@ -17,14 +17,6 @@ router.get("/list", function(req, res) {
 //    migrant.circle = "Mazbat";
 //    migrant.save();
 
-//    MigrantModel.find(function(err, docs) {
-//        if (!err) {
-//	    res.render("list", { data : docs })
-//	} else {
-//	    res.send("Error")
-//	}
-//    });
-
     MigrantModel.find({}).lean().exec(function(err, docs) {
         if (!err) {
 	    res.render("list", { data : docs })
