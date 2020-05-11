@@ -57,15 +57,21 @@ router.get("/add", function(req, res) {
 
 router.post("/add", function(req, res) {
     var migrant = new MigrantModel();
-    migrant.name = req.body.name;
     migrant.refNum = req.body.refNum;
+    migrant.name = req.body.name;
+    migrant.address = req.body.address;
     migrant.state = req.body.state;
+    migrant.district = req.body.district;
+    migrant.phoneNum = req.body.phoneNum;
+    migrant.gender = req.body.gender;
+    migrant.verification = req.body.verification;
     migrant.circle = req.body.circle;
 
     migrant.save(function(err, doc) {
         if (!err) {
 	    res.redirect("/migrant/list")
 	} else {
+	    console.log(err);
 	    res.send("Error Occured");
 	}
     });

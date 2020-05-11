@@ -36,6 +36,11 @@ var MigrantSchema = new mongoose.Schema({
 	trim: true,
         required: true
     },
+    gender : {
+        type: String,
+	trim: true,
+	required: true
+    },
     verification : {
         type: String,
         required: true,

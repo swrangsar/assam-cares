@@ -2,48 +2,58 @@
 <form action="/migrant/add" method="post">
   <div class="form-group">
     <label for="refNum">Reference No.</label>
-    <input class="form-control" value="" name="refNum" id="refNum"/>
+    <input class="form-control" value="" name="refNum" id="refNum" maxlength="8" required/>
   </div>
   <div class="form-group">
     <label for="name">Name</label>
-    <input class="form-control" value="" name="name" id="name"/>
+    <input class="form-control" value="" name="name" id="name" data-minlength="3" required/>
   </div>
 
   <div class="form-group">
-    <label for="address">Address</label>
+    <label for="address">Address:</label>
     <input value="" name="address" class="form-control" id="address"/>
   </div>
 
   <div class="form-group">
-    <label for="district">Present district:</label>
-    <select id="district" name="district" class="form-control">
-      <option selected="true" value="" disabled>Select district</option>
-    </select>
-  </div>
-
-  <div class="form-group">
     <label for="state">Present State:</label>
-    <select id="state" name="state" class="form-control">
+    <select id="state" name="state" class="form-control" required>
       <option selected="true" disabled>Choose state/union territory</option>
       {{#each states}}
       <option value="{{this}}">{{this}}</option>
       {{/each}}
     </select>
   </div>
+  <div class="form-group">
+    <label for="district">Present district:</label>
+    <select id="district" name="district" class="form-control" required>
+      <option selected="true" value="" disabled>Select district</option>
+    </select>
+  </div>
+
 
 
   <div class="form-group">
     <label for="phoneNum">Phone:</label>
-    <input value="000" name="phoneNum" class="form-control" id="phoneNum"/>
+    <input value="" name="phoneNum" class="form-control" id="phoneNum" placeholder="0000-000000" maxlength="10" data-minlength="3" required/>
   </div>
+
+  <div class="form-group">
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender" class="form-control" required>
+      <option selected="true" disabled>Choose gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+  </div>
+
   <div class="form-group">
     <label for="verification">Verification:</label>
-    <input value="" name="verification" class="form-control" id="verification"/>
+    <input value="" name="verification" class="form-control" id="verification" placeholder="Yes/No/Remark"/>
   </div>
 
   <div class="form-group">
     <label for="circle">Revenue Circle:</label>
-    <select id="circle" name="circle" class="form-control">
+    <select id="circle" name="circle" class="form-control" required>
       <option selected="true" disabled>Choose revenue circle</option>
       {{#each circles}}
       <option value="{{this}}">{{this}}</option>
