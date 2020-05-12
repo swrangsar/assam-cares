@@ -26,7 +26,7 @@ router.get("/list", function(req, res) {
     });
 });
 
-router.get("/list/:circle", function(req, res) {
+router.get("/list/:circle", (req, res) => {
     var circle = req.params.circle;
 
     MigrantModel.find({"circle" : circle}).lean().exec(function(err, docs) {
@@ -42,7 +42,7 @@ router.get("/list/:circle", function(req, res) {
 });
 
 
-router.get("/", function(req, res) {
+router.get("/", (req, res) => {
 	res.render("migrant", {
 	    circles : constants.CIRCLES 
 	});
@@ -77,7 +77,7 @@ router.post("/add", function(req, res) {
     });
 });
 
-router.get("/get-districts/:state", function(req, res) {
+router.get("/get-districts/:state", (req, res) => {
     const state = req.params.state;
     fs.readFile(path.join(__dirname, '../public/data/states-and-districts.json'),
         'utf-8', (err, data) => {
@@ -90,7 +90,7 @@ router.get("/get-districts/:state", function(req, res) {
 //	    console.log(JSON.stringify(districtData));
 	    res.json(districtData);
 	} else {
-	    console.log("state " + state + " not in json data");
+	    console.log("state ", state, " not in json data");
 	}
     });
 });
