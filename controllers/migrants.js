@@ -1,10 +1,10 @@
-var express = require("express");
-var mongoose = require("mongoose");
-var constants = require("../constant");
-var path = require("path");
+const express = require("express");
+const mongoose = require("mongoose");
+const constants = require("../constant");
+const path = require("path");
 
-var router = express.Router();
-var MigrantModel = mongoose.model("Migrant");
+const router = express.Router();
+const MigrantModel = mongoose.model("Migrant");
 const fs = require('fs');
 
 // let districtData = require("../public/data/states.json");

@@ -1,13 +1,13 @@
-var express = require("express");
-var path = require("path");
-var expressHandlebars = require("express-handlebars");
-var bodyparser = require("body-parser");
+const express = require("express");
+const path = require("path");
+const expressHandlebars = require("express-handlebars");
+const bodyparser = require("body-parser");
 
-var connection = require("./model");
-var MigrantController = require("./controllers/migrants")
+const connection = require("./model");
+const MigrantController = require("./controllers/migrants")
 
 
-var app = express();
+const app = express();
 
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
@@ -38,6 +38,6 @@ app.get("/", function (req, res) {
 app.use("/migrant", MigrantController)
 
 
-app.listen("3000", '0.0.0.0', function() {
+app.listen("80", '0.0.0.0', function() {
     console.log("Server started");
 });
