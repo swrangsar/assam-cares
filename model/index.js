@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 require('dotenv').config();
 
 mongoose.connect(process.env.DB_CONNECTION, {
