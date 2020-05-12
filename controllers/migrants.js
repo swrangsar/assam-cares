@@ -48,14 +48,14 @@ router.get("/", (req, res) => {
 	});
 });
 
-router.get("/add", function(req, res) {
+router.get("/add", (req, res) => {
     res.render("add-migrant", {
         circles : constants.CIRCLES,
 	states : constants.STATES
 	});
 });
 
-router.post("/add", function(req, res) {
+router.post("/add", (req, res) => {
     var migrant = new MigrantModel();
     migrant.refNum = req.body.refNum;
     migrant.name = req.body.name;
