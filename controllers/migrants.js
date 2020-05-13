@@ -7,7 +7,6 @@ const router = express.Router();
 const MigrantModel = mongoose.model("Migrant");
 const fs = require('fs');
 
-// let districtData = require("../public/data/states.json");
 
 router.get("/list", function(req, res) {
 //    var migrant = new MigrantModel();
@@ -17,7 +16,7 @@ router.get("/list", function(req, res) {
 //    migrant.circle = "Mazbat";
 //    migrant.save();
 
-    MigrantModel.find({}).lean().exec(function(err, docs) {
+    MigrantModel.find({}).lean().exec((err, docs) => {
         if (!err) {
 	    res.render("list", { data : docs })
 	} else {
@@ -29,7 +28,7 @@ router.get("/list", function(req, res) {
 router.get("/list/:circle", (req, res) => {
     var circle = req.params.circle;
 
-    MigrantModel.find({"circle" : circle}).lean().exec(function(err, docs) {
+    MigrantModel.find({"circle" : circle}).lean().exec((err, docs) => {
         if (!err) {
 	    res.render("circle-list", {
 	        circle : circle,
@@ -67,7 +66,7 @@ router.post("/add", (req, res) => {
     migrant.verification = req.body.verification;
     migrant.circle = req.body.circle;
 
-    migrant.save(function(err, doc) {
+    migrant.save((err, doc) => {
         if (!err) {
 	    res.redirect("/migrant/list")
 	} else {

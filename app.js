@@ -38,6 +38,6 @@ app.get("/", function (req, res) {
 app.use("/migrant", MigrantController)
 
 
-app.listen("80", '0.0.0.0', function() {
+app.listen(3000, '0.0.0.0', function() {
     console.log("Server started");
 });

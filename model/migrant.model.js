@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-var MigrantSchema = new mongoose.Schema({
+const MigrantSchema = new mongoose.Schema({
     name : {
         type: String,
 	required: true,
