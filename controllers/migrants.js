@@ -32,7 +32,8 @@ router.get("/list", (req, res) => {
 		        data : docs,
 			totalMigrants : totalDocs,
 			currentPage : pageNum,
-			numOfPages : Math.ceil(totalDocs / pageSize)
+			numOfPages : Math.ceil(totalDocs / pageSize),
+			pageSize : pageSize
 			});
         	} else {
         	    res.send("Error: find db")

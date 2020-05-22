@@ -30,8 +30,23 @@ Number of migrants: {{totalMigrants}}
 </table>
 
 <div>
+
+<span>
+<a href="/migrant/list?pageNum=1&pageSize={{pageSize}}">
+First
+</a>
+</span>
+
 Page {{currentPage}}
+
+<span>
+<a href="/migrant/list?pageNum={{numOfPages}}&pageSize={{pageSize}}">
+Last
+</a>
+</span>
+
 </div>
+
 <div>
 Number of pages - {{numOfPages}}
 </div>
