@@ -8,7 +8,7 @@ const MigrantModel = mongoose.model("Migrant");
 const fs = require('fs');
 
 
-router.get("/list", function(req, res) {
+router.get("/list", (req, res) => {
 //    var migrant = new MigrantModel();
 //    migrant.name = "Anil Orang";
 //    migrant.refNum = 1;
@@ -16,13 +16,31 @@ router.get("/list", function(req, res) {
 //    migrant.circle = "Mazbat";
 //    migrant.save();
 
-    MigrantModel.find({}).lean().exec((err, docs) => {
-        if (!err) {
-	    res.render("list", { data : docs })
+    const pageNum = req.query.pageNum ? parseInt(req.query.pageNum) : 1;
+    const docPerPage = req.query.size ? parseInt(req.query.size) : 10;
+
+    MigrantModel.estimatedDocumentCount({}, (err, totalDocs) => {
+        if (err) {
+	    res.send("Error: counting db");
 	} else {
-	    res.send("Error")
+            MigrantModel.find({})
+	        .skip((docPerPage * pageNum) - docPerPage)
+		.limit(docPerPage)
+		.lean().exec((err, docs) => {
+                if (!err) {
+        	    res.render("list", {
+		        data : docs,
+			totalMigrants : totalDocs,
+			currentPage : pageNum,
+			pages : Math.ceil(totalDocs / docPerPage)
+			});
+        	} else {
+        	    res.send("Error: find db")
+        	}
+            });
 	}
     });
+
 });
 
 router.get("/list/:circle", (req, res) => {
