@@ -23,17 +23,23 @@ router.get("/list", (req, res) => {
         if (err) {
 	    res.send("Error: counting db");
 	} else {
+
             MigrantModel.find({})
 	        .skip((pageSize * pageNum) - pageSize)
 		.limit(pageSize)
 		.lean().exec((err, docs) => {
                 if (!err) {
+	            const numOfPages = Math.ceil(totalDocs / pageSize);
+		    const nextPage = pageNum < numOfPages ? pageNum + 1 : numOfPages;
+		    const prevPage = pageNum > 1 ? pageNum - 1 : 1;
         	    res.render("list", {
 		        data : docs,
 			totalMigrants : totalDocs,
 			currentPage : pageNum,
-			numOfPages : Math.ceil(totalDocs / pageSize),
-			pageSize : pageSize
+			numOfPages : numOfPages,
+			pageSize : pageSize,
+			nextPage : nextPage,
+			prevPage : prevPage
 			});
         	} else {
         	    res.send("Error: find db")
