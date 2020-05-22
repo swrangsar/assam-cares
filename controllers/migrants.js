@@ -17,22 +17,22 @@ router.get("/list", (req, res) => {
 //    migrant.save();
 
     const pageNum = req.query.pageNum ? parseInt(req.query.pageNum) : 1;
-    const docPerPage = req.query.size ? parseInt(req.query.size) : 10;
+    const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 10;
 
-    MigrantModel.estimatedDocumentCount({}, (err, totalDocs) => {
+    MigrantModel.estimatedDocumentCount((err, totalDocs) => {
         if (err) {
 	    res.send("Error: counting db");
 	} else {
             MigrantModel.find({})
-	        .skip((docPerPage * pageNum) - docPerPage)
-		.limit(docPerPage)
+	        .skip((pageSize * pageNum) - pageSize)
+		.limit(pageSize)
 		.lean().exec((err, docs) => {
                 if (!err) {
         	    res.render("list", {
 		        data : docs,
 			totalMigrants : totalDocs,
 			currentPage : pageNum,
-			pages : Math.ceil(totalDocs / docPerPage)
+			numOfPages : Math.ceil(totalDocs / pageSize)
 			});
         	} else {
         	    res.send("Error: find db")
