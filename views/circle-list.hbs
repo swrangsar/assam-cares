@@ -7,7 +7,7 @@ Number of migrants: {{data.length}}
 
 <table class="table">
     <tr>
-        <th>Ref. No.</th>
+        <th>#</th>
 	<th>Name</th>
 	<th>Address</th>
 	<th>District</th>
@@ -27,3 +27,37 @@ Number of migrants: {{data.length}}
     </tr>
     {{/each}}
 </table>
+
+<nav aria-label="Pages listing all migrants">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="/migrant/{{circle}}?pageNum=1&pageSize={{pageSize}}">
+        First
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="/migrant/{{circle}}?pageNum={{prevPage}}&pageSize={{pageSize}}">
+        Prev
+      </a>
+    </li>
+    <li class="page-item disabled">
+      <span class="page-link">
+      Page {{currentPage}}
+      </span>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="/migrant/{{circle}}?pageNum={{nextPage}}&pageSize={{pageSize}}">
+        Next
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="/migrant/{{circle}}?pageNum={{numOfPages}}&pageSize={{pageSize}}">
+        Last
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<div>
+Number of pages - {{numOfPages}}
+</div>

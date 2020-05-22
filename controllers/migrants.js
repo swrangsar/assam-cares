@@ -33,6 +33,7 @@ router.get("/list", (req, res) => {
 		    const nextPage = pageNum < numOfPages ? pageNum + 1 : numOfPages;
 		    const prevPage = pageNum > 1 ? pageNum - 1 : 1;
         	    res.render("list", {
+		    	circle : "",
 		        data : docs,
 			totalMigrants : totalDocs,
 			currentPage : pageNum,
@@ -51,17 +52,37 @@ router.get("/list", (req, res) => {
 });
 
 router.get("/list/:circle", (req, res) => {
-    var circle = req.params.circle;
+    const circle = req.params.circle;
+    const pageNum = req.query.pageNum ? parseInt(req.query.pageNum) : 1;
+    const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 10;
 
-    MigrantModel.find({"circle" : circle}).lean().exec((err, docs) => {
-        if (!err) {
-	    res.render("circle-list", {
-	        circle : circle,
-		data : docs
-	    })
+    MigrantModel.countDocuments({"circle" : circle}, (err, totalDocs) => {
+        if (err) {
+	    res.send("Error: counting db");
 	} else {
-	    res.send("Error")
-	}
+            MigrantModel.find({"circle" : circle})
+	        .skip((pageSize * pageNum) - pageSize)
+		.limit(pageSize)
+	        .lean().exec((err, docs) => {
+                if (!err) {
+	            const numOfPages = Math.ceil(totalDocs / pageSize);
+		    const nextPage = pageNum < numOfPages ? pageNum + 1 : numOfPages;
+		    const prevPage = pageNum > 1 ? pageNum - 1 : 1;
+        	    res.render("list", {
+        	        circle : circle,
+        		data : docs,
+			totalMigrants : totalDocs,
+			currentPage : pageNum,
+			numOfPages : numOfPages,
+			pageSize : pageSize,
+			nextPage : nextPage,
+			prevPage : prevPage
+        	    });
+        	} else {
+        	    res.send("Error: find circle db")
+        	}
+            });
+        }
     });
 });
 
