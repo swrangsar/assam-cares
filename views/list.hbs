@@ -29,37 +29,35 @@ Number of migrants: {{totalMigrants}}
     {{/each}}
 </table>
 
-<div>
-
-<span>
-<a href="/migrant/list?pageNum=1&pageSize={{pageSize}}">
-First
-</a>
-</span>
-
-<span>
-<a href="/migrant/list?pageNum={{prevPage}}&pageSize={{pageSize}}">
-Prev
-</a>
-</span>
-
-<span>
-Page {{currentPage}}
-</span>
-
-<span>
-<a href="/migrant/list?pageNum={{nextPage}}&pageSize={{pageSize}}">
-Next
-</a>
-</span>
-
-<span>
-<a href="/migrant/list?pageNum={{numOfPages}}&pageSize={{pageSize}}">
-Last
-</a>
-</span>
-
-</div>
+<nav aria-label="Pages listing all migrants">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="/migrant/list?pageNum=1&pageSize={{pageSize}}">
+        First
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="/migrant/list?pageNum={{prevPage}}&pageSize={{pageSize}}">
+        Prev
+      </a>
+    </li>
+    <li class="page-item disabled">
+      <span class="page-link">
+      Page {{currentPage}}
+      </span>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="/migrant/list?pageNum={{nextPage}}&pageSize={{pageSize}}">
+        Next
+      </a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" href="/migrant/list?pageNum={{numOfPages}}&pageSize={{pageSize}}">
+        Last
+      </a>
+    </li>
+  </ul>
+</nav>
 
 <div>
 Number of pages - {{numOfPages}}
