@@ -7,14 +7,28 @@ const router = express.Router();
 const MigrantModel = mongoose.model("Migrant");
 const fs = require('fs');
 
+const getPagination = function (pageNum, pageSize, totalDocs) {
+    const numOfPages = Math.ceil(totalDocs / pageSize);
+    const nextPage = pageNum < numOfPages ? pageNum + 1 : numOfPages;
+    const prevPage = pageNum > 1 ? pageNum - 1 : 1;
+    const hasNext = pageNum < numOfPages;
+    const hasPrev = pageNum > 1;
+
+    const pagination = {
+        currPage: pageNum,
+        totalDocs: totalDocs,
+        pageSize: pageSize,
+        numOfPages: numOfPages,
+	nextPage: nextPage,
+	prevPage: prevPage,
+        hasNext: hasNext,
+        hasPrev: hasPrev
+    };
+
+    return pagination;
+};
 
 router.get("/list", (req, res) => {
-//    var migrant = new MigrantModel();
-//    migrant.name = "Anil Orang";
-//    migrant.refNum = 1;
-//    migrant.state = "Kerala";
-//    migrant.circle = "Mazbat";
-//    migrant.save();
 
     const pageNum = req.query.pageNum ? parseInt(req.query.pageNum) : 1;
     const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 10;
@@ -29,18 +43,13 @@ router.get("/list", (req, res) => {
 		.limit(pageSize)
 		.lean().exec((err, docs) => {
                 if (!err) {
-	            const numOfPages = Math.ceil(totalDocs / pageSize);
-		    const nextPage = pageNum < numOfPages ? pageNum + 1 : numOfPages;
-		    const prevPage = pageNum > 1 ? pageNum - 1 : 1;
+		    const pagination = getPagination(pageNum, pageSize, totalDocs);
+
         	    res.render("list", {
 		    	circle : "",
 		        data : docs,
 			totalMigrants : totalDocs,
-			currentPage : pageNum,
-			numOfPages : numOfPages,
-			pageSize : pageSize,
-			nextPage : nextPage,
-			prevPage : prevPage
+			pagination : pagination
 			});
         	} else {
         	    res.send("Error: find db")
@@ -65,18 +74,13 @@ router.get("/list/:circle", (req, res) => {
 		.limit(pageSize)
 	        .lean().exec((err, docs) => {
                 if (!err) {
-	            const numOfPages = Math.ceil(totalDocs / pageSize);
-		    const nextPage = pageNum < numOfPages ? pageNum + 1 : numOfPages;
-		    const prevPage = pageNum > 1 ? pageNum - 1 : 1;
+		    const pagination = getPagination(pageNum, pageSize, totalDocs);
+
         	    res.render("list", {
         	        circle : circle,
         		data : docs,
 			totalMigrants : totalDocs,
-			currentPage : pageNum,
-			numOfPages : numOfPages,
-			pageSize : pageSize,
-			nextPage : nextPage,
-			prevPage : prevPage
+			pagination : pagination
         	    });
         	} else {
         	    res.send("Error: find circle db")

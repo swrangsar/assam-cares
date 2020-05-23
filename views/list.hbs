@@ -33,36 +33,70 @@ Number of migrants: {{totalMigrants}}
     {{/each}}
 </table>
 
+{{#with pagination as | pagination |}}
 <nav aria-label="Pages listing migrants">
   <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="/migrant/list/{{circle}}?pageNum=1&pageSize={{pageSize}}">
-        First
-      </a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="/migrant/list/{{circle}}?pageNum={{prevPage}}&pageSize={{pageSize}}">
-        Prev
-      </a>
-    </li>
+
+    {{#if pagination.hasPrev}}    
+      <li class="page-item">
+        <a class="page-link" href="/migrant/list/{{../circle}}?pageNum=1&pageSize={{pagination.pageSize}}">
+          First
+        </a>
+      </li>
+
+      <li class="page-item">
+        <a class="page-link" href="/migrant/list/{{../circle}}?pageNum={{pagination.prevPage}}&pageSize={{pagination.pageSize}}">
+          Prev
+        </a>
+      </li>
+    {{else}}
+      <li class="page-item disabled">
+          <span class="page-link">
+            First
+          </span>
+      </li>
+      <li class="page-item disabled">
+          <span class="page-link">
+            Prev
+          </span>
+      </li>
+    {{/if}}
+
     <li class="page-item disabled">
       <span class="page-link">
-      Page {{currentPage}}
+        Page {{pagination.currPage}}
       </span>
     </li>
-    <li class="page-item">
-      <a class="page-link" href="/migrant/list/{{circle}}?pageNum={{nextPage}}&pageSize={{pageSize}}">
-        Next
-      </a>
-    </li>
-    <li class="page-item">
-      <a class="page-link" href="/migrant/list/{{circle}}?pageNum={{numOfPages}}&pageSize={{pageSize}}">
-        Last
-      </a>
-    </li>
+
+    {{#if pagination.hasNext}}
+      <li class="page-item">
+        <a class="page-link" href="/migrant/list/{{../circle}}?pageNum={{pagination.nextPage}}&pageSize={{pagination.pageSize}}">
+          Next
+        </a>
+      </li>
+  
+      <li class="page-item">
+        <a class="page-link" href="/migrant/list/{{../circle}}?pageNum={{pagination.numOfPages}}&pageSize={{pagination.pageSize}}">
+          Last
+        </a>
+      </li>
+    {{else}}
+      <li class="page-item disabled">
+          <span class="page-link">
+            Next 
+          </span>
+      </li>
+      <li class="page-item disabled">
+          <span class="page-link">
+            Last 
+          </span>
+      </li>
+    {{/if}}
+
   </ul>
 </nav>
 
 <div>
-Number of pages - {{numOfPages}}
+Number of pages - {{pagination.numOfPages}}
 </div>
+{{/with}}
