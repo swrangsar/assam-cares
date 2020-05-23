@@ -45,4 +45,6 @@ const STATES = [
     "West Bengal"
 ];
 
-module.exports = {CIRCLES, STATES};
+const DEFAULT_CIRCLE = "all";
+
+module.exports = {CIRCLES, STATES, DEFAULT_CIRCLE};

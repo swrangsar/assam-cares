@@ -7,6 +7,7 @@ const router = express.Router();
 const MigrantModel = mongoose.model("Migrant");
 const fs = require('fs');
 
+
 const getPagination = function (pageNum, pageSize, totalDocs) {
     const numOfPages = Math.ceil(totalDocs / pageSize);
     const nextPage = pageNum < numOfPages ? pageNum + 1 : numOfPages;
@@ -29,35 +30,7 @@ const getPagination = function (pageNum, pageSize, totalDocs) {
 };
 
 router.get("/list", (req, res) => {
-
-    const pageNum = req.query.pageNum ? parseInt(req.query.pageNum) : 1;
-    const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 10;
-
-    MigrantModel.estimatedDocumentCount((err, totalDocs) => {
-        if (err) {
-	    res.send("Error: counting db");
-	} else {
-
-            MigrantModel.find({})
-	        .skip((pageSize * pageNum) - pageSize)
-		.limit(pageSize)
-		.lean().exec((err, docs) => {
-                if (!err) {
-		    const pagination = getPagination(pageNum, pageSize, totalDocs);
-
-        	    res.render("list", {
-		    	circle : "",
-		        data : docs,
-			totalMigrants : totalDocs,
-			pagination : pagination
-			});
-        	} else {
-        	    res.send("Error: find db")
-        	}
-            });
-	}
-    });
-
+    res.redirect("/migrant/list/" + constants.DEFAULT_CIRCLE);
 });
 
 router.get("/list/:circle", (req, res) => {
@@ -65,11 +38,17 @@ router.get("/list/:circle", (req, res) => {
     const pageNum = req.query.pageNum ? parseInt(req.query.pageNum) : 1;
     const pageSize = req.query.pageSize ? parseInt(req.query.pageSize) : 10;
 
-    MigrantModel.countDocuments({"circle" : circle}, (err, totalDocs) => {
+    var query = {};
+    
+    if (constants.DEFAULT_CIRCLE !== circle) {
+        query.circle = circle;
+    }
+
+    MigrantModel.countDocuments(query, (err, totalDocs) => {
         if (err) {
 	    res.send("Error: counting db");
 	} else {
-            MigrantModel.find({"circle" : circle})
+            MigrantModel.find(query)
 	        .skip((pageSize * pageNum) - pageSize)
 		.limit(pageSize)
 	        .lean().exec((err, docs) => {
