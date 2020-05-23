@@ -54,12 +54,14 @@ router.get("/list/:circle", (req, res) => {
 	        .lean().exec((err, docs) => {
                 if (!err) {
 		    const pagination = getPagination(pageNum, pageSize, totalDocs);
+		    const title = circle + " circle";
 
         	    res.render("list", {
         	        circle : circle,
         		data : docs,
 			totalMigrants : totalDocs,
-			pagination : pagination
+			pagination : pagination,
+			title: title
         	    });
         	} else {
         	    res.send("Error: find circle db")
