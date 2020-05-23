@@ -4,10 +4,6 @@
 <h2> Circle - {{circle}} </h2>
 {{/if}}
 
-<div>
-Number of migrants: {{totalMigrants}}
-</div>
-
 <table class="table">
     <tr>
         <th>#</th>
@@ -32,6 +28,11 @@ Number of migrants: {{totalMigrants}}
     </tr>
     {{/each}}
 </table>
+
+<div>
+Showing {{data.length}} of {{totalMigrants}} records
+</div>
+
 
 {{#with pagination as | pagination |}}
 <nav aria-label="Pages listing migrants">
